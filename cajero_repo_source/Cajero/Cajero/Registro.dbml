@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="registro" Class="RegistroDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=eduardo\SQLEXPRESS;Initial Catalog=registro;Integrated Security=True" SettingsObjectName="Cajero.Properties.Settings" SettingsPropertyName="registroConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.clientes" Member="clientes">
+    <Type Name="clientes">
+      <Column Name="codigo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="apellido" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="fecha_de_nacimiento" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="DPI" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="correo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="telefono" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="usuario" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="contraseña" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="banco" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="monto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="estado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

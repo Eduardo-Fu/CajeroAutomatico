@@ -1,4 +1,102 @@
-# 🏧 Cajero Automático (ATM) en C# .NET & SQL Server
+import { Cliente, RetiroRegistro, DepositoRegistro } from '../types/cajero';
+
+export const INITIAL_CLIENTS: Cliente[] = [
+  {
+    codigo: 1000,
+    nombre: 'Eduardo',
+    apellido: 'Fu',
+    fecha_de_nacimiento: '20/12/2002',
+    DPI: 3023043040101,
+    correo: 'eduardo.fu@galileo.edu',
+    telefono: 58806672,
+    usuario: 'eduardofujeje',
+    contraseña: 'ciscO@123',
+    banco: 'Industrial',
+    monto: 150,
+    estado: true,
+  },
+  {
+    codigo: 1001,
+    nombre: 'Daniella',
+    apellido: 'Alvarez',
+    fecha_de_nacimiento: '10/10/2003',
+    DPI: 3021675360101,
+    correo: 'daniella.alvarez@galileo.edu',
+    telefono: 55327920,
+    usuario: 'daniellajeje',
+    contraseña: 'ciscO@123',
+    banco: 'Banrural',
+    monto: 1500,
+    estado: true,
+  },
+  {
+    codigo: 1002,
+    nombre: 'Lalo',
+    apellido: 'Perez',
+    fecha_de_nacimiento: '01/02/1999',
+    DPI: 3021051570101,
+    correo: 'lalo.perez@galileo.edu',
+    telefono: 48965789,
+    usuario: 'laloooo1',
+    contraseña: 'andreA@145',
+    banco: 'Industrial',
+    monto: 10000,
+    estado: false, // Bloqueado inicialmente en el script SQL
+  },
+];
+
+export const INITIAL_RETIROS: RetiroRegistro[] = [
+  {
+    codigo: 1000,
+    nombre: 'Eduardo',
+    apellido: 'Fu',
+    monto: 200,
+    fecha: '05/10/2026',
+  },
+];
+
+export const INITIAL_DEPOSITOS: DepositoRegistro[] = [
+  {
+    codigoDepositante: 1000,
+    usuarioDepositante: 'eduardofujeje',
+    codigoReceptor: 1001,
+    usuarioReceptor: 'daniellajeje',
+    monto: 500,
+    fecha: '05/10/2026',
+  },
+];
+
+export const SQL_SCRIPT = `CREATE DATABASE registro;
+USE registro;
+
+CREATE TABLE clientes(
+	codigo INT PRIMARY KEY IDENTITY(1000,1),
+	nombre VARCHAR(30),
+	apellido VARCHAR(30),
+	fecha_de_nacimiento VARCHAR(30),
+	DPI BIGINT,
+	correo VARCHAR(50),
+	telefono BIGINT,
+	usuario VARCHAR(30),
+	contraseña VARCHAR(30),
+	banco VARCHAR(15),
+	monto INT,
+	estado BIT
+);
+
+SELECT * FROM clientes;
+
+INSERT INTO clientes(nombre,apellido,fecha_de_nacimiento,DPI,correo,telefono,usuario,contraseña,banco,monto,estado)
+VALUES ('Eduardo','Fu','20/12/2002',3023043040101,'eduardo.fu@galileo.edu',58806672,'eduardofujeje','ciscO@123','Industrial',150,1);
+
+INSERT INTO clientes(nombre,apellido,fecha_de_nacimiento,DPI,correo,telefono,usuario,contraseña,banco,monto,estado)
+VALUES ('Daniella','Alvarez','10/10/2003',3021675360101,'daniella.alvarez@galileo.edu',55327920,'daniellajeje','ciscO@123','Banrural',1500,1);
+
+INSERT INTO clientes(nombre,apellido,fecha_de_nacimiento,DPI,correo,telefono,usuario,contraseña,banco,monto,estado)
+VALUES ('Lalo','Perez','01/02/1999',3021051570101,'lalo.perez@galileo.edu',48965789,'laloooo1','andreA@145','Industrial',10000,0);
+`;
+
+export const README_MARKDOWN = `# 🏧 Cajero Automático (ATM) en C# .NET & SQL Server
 
 <div align="center">
 
@@ -19,7 +117,7 @@
 <br/>
 
 <!-- PREVIEW BANNER -->
-<img src="https://raw.githubusercontent.com/Eduardo-Fu/Cajero/main/preview-cajero.svg" alt="Preview Cajero Automático C#" width="100%" onerror="this.src='./preview-cajero.svg'" />
+<img src="./preview-cajero.svg" alt="Preview Cajero Automático C#" width="100%" />
 
 </div>
 
@@ -33,7 +131,7 @@
   - **Bloqueo automático de cuenta** en la base de datos al superar el límite de intentos.
 
 - **💵 Retiro de Efectivo en Quetzales (GTQ)**:
-  - Botones rápidos de retiro: `Q50.00`, `Q100.00`, `Q200.00`, `Q400.00`, `Q600.00` y `Q1000.00`.
+  - Botones rápidos de retiro: \`Q50.00\`, \`Q100.00\`, \`Q200.00\`, \`Q400.00\`, \`Q600.00\` y \`Q1000.00\`.
   - Opción de **monto personalizado** (requiere estrictamente múltiplos de Q50).
   - Verificación de saldo disponible y cálculo de cambio.
   - **Límite diario acumulativo de retiros:** Máximo **Q3,000.00 por día**.
@@ -45,7 +143,7 @@
 
 - **👤 Registro de Clientes Nuevos**:
   - Registro guiado en 2 etapas: Datos Personales y Credenciales Bancarias.
-  - Validaciones con expresiones regulares (`Regex`):
+  - Validaciones con expresiones regulares (\`Regex\`):
     - Nombre y Apellido (únicamente letras).
     - Fecha de nacimiento (validación de formatos de calendario y años 1900–2005).
     - Teléfono guatemalteco de 8 dígitos numéricos (comprobación de unicidad).
@@ -55,11 +153,11 @@
     - Depósito de apertura mínimo de **Q100.00**.
 
 - **📊 Auditoría y Registro en CSV**:
-  - `Retiros.csv`: guarda automáticamente `Codigo;Nombre;Apellido;Monto Retirado;Fecha`.
-  - `Depositos.csv`: guarda `CodigoDepositante;UsuarioDepositante;CodigoReceptor;UsuarioReceptor;Monto;Fecha`.
+  - \`Retiros.csv\`: guarda automáticamente \`Codigo;Nombre;Apellido;Monto Retirado;Fecha\`.
+  - \`Depositos.csv\`: guarda \`CodigoDepositante;UsuarioDepositante;CodigoReceptor;UsuarioReceptor;Monto;Fecha\`.
 
 - **🗄️ Persistencia con LINQ to SQL**:
-  - Mapeo relacional con `RegistroDataContext` (`Registro.dbml`) sobre Microsoft SQL Server.
+  - Mapeo relacional con \`RegistroDataContext\` (\`Registro.dbml\`) sobre Microsoft SQL Server.
 
 ---
 
@@ -72,7 +170,7 @@ Puedes probar la versión simulada interactiva directamente en la web sin compil
 La web incluye:
 1. **Simulador de cajero completo** con las reglas idénticas al código de C#.
 2. **Generador y visor del archivo README.md** para el repositorio.
-3. **Descargador de los archivos de base de datos (`SQLQueryProyecto.sql`) y logs CSV**.
+3. **Descargador de los archivos de base de datos (\`SQLQueryProyecto.sql\`) y logs CSV**.
 4. **Editor de base de datos** para añadir y probar usuarios.
 
 ---
@@ -83,15 +181,15 @@ Al ejecutar el script de base de datos se generan los siguientes usuarios inicia
 
 | Código | Usuario | Contraseña | DPI | Banco | Saldo Inicial | Estado |
 | :---: | :--- | :--- | :---: | :--- | :---: | :---: |
-| **1000** | `eduardofujeje` | `ciscO@123` | `3023043040101` | Industrial | **Q 150.00** | ✅ Activo |
-| **1001** | `daniellajeje` | `ciscO@123` | `3021675360101` | Banrural | **Q 1,500.00** | ✅ Activo |
-| **1002** | `laloooo1` | `andreA@145` | `3021051570101` | Industrial | **Q 10,000.00** | ❌ Bloqueado |
+| **1000** | \`eduardofujeje\` | \`ciscO@123\` | \`3023043040101\` | Industrial | **Q 150.00** | ✅ Activo |
+| **1001** | \`daniellajeje\` | \`ciscO@123\` | \`3021675360101\` | Banrural | **Q 1,500.00** | ✅ Activo |
+| **1002** | \`laloooo1\` | \`andreA@145\` | \`3021051570101\` | Industrial | **Q 10,000.00** | ❌ Bloqueado |
 
 ---
 
 ## 🏛️ Arquitectura y Módulos
 
-```
+\`\`\`
 Cajero/
 ├── Cajero.sln                      # Archivo de solución de Visual Studio
 ├── SQLQueryProyecto.sql            # Script DDL y DML para Microsoft SQL Server
@@ -107,32 +205,15 @@ Cajero/
     ├── Registro.dbml / .designer.cs           # Mapeo ORM LINQ to SQL
     ├── Imagenes/                              # Fondos y logotipos de la UI
     └── Transacciones/                         # Almacenamiento local de archivos CSV
-```
-
-### Flujo de Navegación
-
-```mermaid
-graph TD
-    A[Login: Form1.cs] -->|Credenciales Válidas| B[Menú Principal: Menu_Inicio.cs]
-    A -->|3 Intentos Fallidos| X[Cuenta Bloqueada estado=0]
-    A -->|Botón Registrarse| C[RegistroCuenta.cs]
-    C -->|Paso 1: Personales| C2[Paso 2: Cuenta & Clave]
-    C2 -->|Creación Exitosa| A
-    B -->|Opción 1| D[Retiro.cs]
-    B -->|Opción 2| E[Deposito.cs]
-    B -->|Opción 3| F[Consulta.cs]
-    B -->|Cerrar Sesión| A
-    D -->|Retiro OK / Límite Q3,000| CSV1[(Retiros.csv)]
-    E -->|Depósito OK / Límite Q2,000| CSV2[(Depositos.csv)]
-```
+\`\`\`
 
 ---
 
 ## 🗄️ Esquema de Base de Datos
 
-El script SQL se encuentra en `Cajero/SQLQueryProyecto.sql`. Crea la base de datos `registro` y la tabla `clientes`:
+El script SQL se encuentra en \`Cajero/SQLQueryProyecto.sql\`. Crea la base de datos \`registro\` y la tabla \`clientes\`:
 
-```sql
+\`\`\`sql
 CREATE DATABASE registro;
 USE registro;
 
@@ -150,7 +231,7 @@ CREATE TABLE clientes(
     monto INT,
     estado BIT
 );
-```
+\`\`\`
 
 ---
 
@@ -165,47 +246,47 @@ CREATE TABLE clientes(
 ### 2. Pasos de Instalación
 
 1. **Clonar el repositorio**:
-   ```bash
+   \`\`\`bash
    git clone https://github.com/Eduardo-Fu/Cajero.git
    cd Cajero
-   ```
+   \`\`\`
 
 2. **Crear la Base de Datos**:
    - Abre SQL Server Management Studio (SSMS).
-   - Conéctate a tu instancia local (`localhost\SQLEXPRESS` o tu nombre de equipo).
-   - Abre y ejecuta el archivo `Cajero/SQLQueryProyecto.sql`.
+   - Conéctate a tu instancia local (\`localhost\\SQLEXPRESS\` o tu nombre de equipo).
+   - Abre y ejecuta el archivo \`Cajero/SQLQueryProyecto.sql\`.
 
-3. **Configurar la Cadena de Conexión en `App.config`**:
-   Abre el archivo `Cajero/Cajero/App.config` y ajusta el `Data Source` con el nombre de tu servidor:
-   ```xml
+3. **Configurar la Cadena de Conexión en \`App.config\`**:
+   Abre el archivo \`Cajero/Cajero/App.config\` y ajusta el \`Data Source\` con el nombre de tu servidor:
+   \`\`\`xml
    <connectionStrings>
        <add name="Cajero.Properties.Settings.registroConnectionString"
-            connectionString="Data Source=TU_SERVIDOR\SQLEXPRESS;Initial Catalog=registro;Integrated Security=True"
+            connectionString="Data Source=TU_SERVIDOR\\SQLEXPRESS;Initial Catalog=registro;Integrated Security=True"
             providerName="System.Data.SqlClient" />
    </connectionStrings>
-   ```
+   \`\`\`
 
 4. **Compilar y Ejecutar**:
-   - Abre `Cajero/Cajero.sln` con Visual Studio.
-   - Presiona `F5` o haz clic en **Iniciar** en modo `Debug` o `Release`.
+   - Abre \`Cajero/Cajero.sln\` con Visual Studio.
+   - Presiona \`F5\` o haz clic en **Iniciar** en modo \`Debug\` o \`Release\`.
 
 ---
 
 ## 📝 Auditoría de Archivos CSV
 
-La aplicación almacena automáticamente cada movimiento en el directorio `Transacciones/`:
+La aplicación almacena automáticamente cada movimiento en el directorio \`Transacciones/\`:
 
-### Formato `Retiros.csv`:
-```csv
+### Formato \`Retiros.csv\`:
+\`\`\`csv
 Codigo;Nombre;Apellido;Monto Retirado;Fecha
 1000;Eduardo;Fu;200;06/10/2026
-```
+\`\`\`
 
-### Formato `Depositos.csv`:
-```csv
+### Formato \`Depositos.csv\`:
+\`\`\`csv
 CodigoDepositante;UsuarioDepositante;CodigoReceptor;UsuarioReceptor;Monto;Fecha
 1000;eduardofujeje;1001;daniellajeje;500;06/10/2026
-```
+\`\`\`
 
 ---
 
@@ -218,3 +299,4 @@ CodigoDepositante;UsuarioDepositante;CodigoReceptor;UsuarioReceptor;Monto;Fecha
 ## 📄 Licencia
 
 Este proyecto está bajo la Licencia **MIT** - consulta el archivo [LICENSE](LICENSE) para más detalles.
+`;

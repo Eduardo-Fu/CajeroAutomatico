@@ -1,0 +1,6 @@
+{
+  "name": "Cajero Automático C# - README & Live Preview",
+  "description": "README profesional, documentación interactiva y simulador web en vivo para el repositorio Cajero C# de Eduardo-Fu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

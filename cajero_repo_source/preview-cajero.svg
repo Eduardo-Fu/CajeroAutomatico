@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e2270" />
+      <stop offset="50%" stop-color="#3238a6" />
+      <stop offset="100%" stop-color="#111442" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffdf79" />
+      <stop offset="100%" stop-color="#f2c641" />
+    </linearGradient>
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)" />
+  
+  <!-- Subtle decorative grid -->
+  <g opacity="0.07" stroke="#ffffff" stroke-width="1">
+    <line x1="100" y1="0" x2="100" y2="630" />
+    <line x1="300" y1="0" x2="300" y2="630" />
+    <line x1="500" y1="0" x2="500" y2="630" />
+    <line x1="700" y1="0" x2="700" y2="630" />
+    <line x1="900" y1="0" x2="900" y2="630" />
+    <line x1="1100" y1="0" x2="1100" y2="630" />
+    <line x1="0" y1="100" x2="1200" y2="100" />
+    <line x1="0" y1="200" x2="1200" y2="200" />
+    <line x1="0" y1="300" x2="1200" y2="300" />
+    <line x1="0" y1="400" x2="1200" y2="400" />
+    <line x1="0" y1="500" x2="1200" y2="500" />
+  </g>
+
+  <!-- Left Header Section -->
+  <g transform="translate(80, 80)">
+    <!-- Badge -->
+    <rect width="170" height="32" rx="16" fill="#f2c641" fill-opacity="0.15" stroke="#f2c641" stroke-width="1.5" />
+    <text x="85" y="21" fill="#f2c641" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="1">C# .NET &bull; WINFORMS</text>
+
+    <!-- Title -->
+    <text x="0" y="85" fill="#ffffff" font-family="'Segoe UI', system-ui, sans-serif" font-size="44" font-weight="800">Cajero Automático</text>
+    <text x="0" y="125" fill="#f2c641" font-family="'Segoe UI', system-ui, sans-serif" font-size="28" font-weight="600">Simulador Bancario en Quetzales (GTQ)</text>
+    
+    <!-- Description -->
+    <text x="0" y="175" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="16" font-weight="400">
+      <tspan x="0" dy="0">Sistema de cajero automático de escritorio desarrollado en C#</tspan>
+      <tspan x="0" dy="26">con persistencia relacional en Microsoft SQL Server, auditoría</tspan>
+      <tspan x="0" dy="26">de transacciones en CSV y validaciones de seguridad.</tspan>
+    </text>
+
+    <!-- Feature tags -->
+    <g transform="translate(0, 260)">
+      <rect x="0" y="0" width="130" height="34" rx="8" fill="#ffffff" fill-opacity="0.1" />
+      <text x="65" y="21" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">🔒 Login Seguro</text>
+
+      <rect x="140" y="0" width="130" height="34" rx="8" fill="#ffffff" fill-opacity="0.1" />
+      <text x="205" y="21" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">💵 Retiros &amp; Topes</text>
+
+      <rect x="280" y="0" width="130" height="34" rx="8" fill="#ffffff" fill-opacity="0.1" />
+      <text x="345" y="21" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">📥 Depósitos Directos</text>
+    </g>
+
+    <g transform="translate(0, 305)">
+      <rect x="0" y="0" width="165" height="34" rx="8" fill="#ffffff" fill-opacity="0.1" />
+      <text x="82" y="21" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">📊 Registro Transaccional</text>
+
+      <rect x="175" y="0" width="150" height="34" rx="8" fill="#ffffff" fill-opacity="0.1" />
+      <text x="250" y="21" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">🗄️ SQL Server DB</text>
+    </g>
+
+    <!-- Live Preview CTA Button -->
+    <g transform="translate(0, 380)">
+      <rect x="0" y="0" width="260" height="52" rx="12" fill="url(#goldGrad)" filter="url(#shadow)" />
+      <text x="130" y="32" fill="#1e2270" font-family="system-ui, sans-serif" font-size="17" font-weight="800" text-anchor="middle">PROBAR PREVIEW ONLINE &rarr;</text>
+    </g>
+  </g>
+
+  <!-- Right ATM Window Mockup -->
+  <g transform="translate(620, 70)" filter="url(#shadow)">
+    <!-- Window Frame -->
+    <rect width="500" height="490" rx="16" fill="#1b203a" stroke="#3b426f" stroke-width="2" />
+    
+    <!-- Titlebar -->
+    <rect width="500" height="42" rx="16" fill="#262d4e" />
+    <rect y="26" width="500" height="16" fill="#262d4e" />
+    <circle cx="24" cy="21" r="6" fill="#ef4444" />
+    <circle cx="44" cy="21" r="6" fill="#eab308" />
+    <circle cx="64" cy="21" r="6" fill="#22c55e" />
+    <text x="250" y="26" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Cajero Automático - Menú Principal</text>
+
+    <!-- ATM Screen Inner Content -->
+    <rect x="20" y="60" width="460" height="410" rx="10" fill="#3238a6" stroke="#f2c641" stroke-width="2" />
+
+    <!-- ATM Header inside Screen -->
+    <rect x="20" y="60" width="460" height="60" rx="10" fill="#23287d" />
+    <text x="50" y="98" fill="#f2c641" font-family="'Segoe UI', system-ui, sans-serif" font-size="22" font-weight="800">SISTEMA BANCARIO</text>
+    <text x="440" y="96" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="end">Cod: 1000 &bull; Activo</text>
+
+    <!-- Balance Banner -->
+    <rect x="40" y="140" width="420" height="68" rx="8" fill="#1e2270" stroke="#4c55bc" stroke-width="1.5" />
+    <text x="60" y="165" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12" font-weight="600">SALDO DISPONIBLE</text>
+    <text x="60" y="196" fill="#f2c641" font-family="system-ui, sans-serif" font-size="26" font-weight="800">Q 150.00</text>
+    <text x="430" y="180" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="end">Banco Industrial</text>
+
+    <!-- Action Buttons Grid -->
+    <!-- Retiro -->
+    <rect x="40" y="230" width="200" height="65" rx="8" fill="#5058c4" stroke="#f2c641" stroke-width="1.5" />
+    <text x="60" y="258" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="700">1. Retiro de Efectivo</text>
+    <text x="60" y="280" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="12">Máx Q3,000 / día</text>
+
+    <!-- Deposito -->
+    <rect x="260" y="230" width="200" height="65" rx="8" fill="#5058c4" stroke="#f2c641" stroke-width="1.5" />
+    <text x="280" y="258" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="700">2. Depósito</text>
+    <text x="280" y="280" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="12">Propia o a terceros</text>
+
+    <!-- Consulta -->
+    <rect x="40" y="315" width="200" height="65" rx="8" fill="#5058c4" stroke="#f2c641" stroke-width="1.5" />
+    <text x="60" y="343" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="700">3. Consulta de Saldo</text>
+    <text x="60" y="365" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="12">Detalle y estado SQL</text>
+
+    <!-- Salir -->
+    <rect x="260" y="315" width="200" height="65" rx="8" fill="#991b1b" stroke="#f87171" stroke-width="1.5" />
+    <text x="280" y="343" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="700">4. Cerrar Sesión</text>
+    <text x="280" y="365" fill="#fecaca" font-family="system-ui, sans-serif" font-size="12">Finalizar y expulsar</text>
+
+    <!-- Bottom System Status -->
+    <rect x="40" y="400" width="420" height="45" rx="8" fill="#1b203a" />
+    <circle cx="60" cy="422" r="5" fill="#22c55e" />
+    <text x="75" y="427" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Servidor SQL conectado: DESKTOP-DANI\SQLEXPRESS &bull; DB: registro</text>
+  </g>
+</svg>

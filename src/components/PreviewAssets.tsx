@@ -12,21 +12,37 @@ import {
 
 export const PreviewAssets: React.FC = () => {
   const [copiedSnippet, setCopiedSnippet] = useState(false);
+  const [copiedLocalSnippet, setCopiedLocalSnippet] = useState(false);
   const [copiedUrl, setCopiedUrl] = useState(false);
 
-  const embedSnippet = `<!-- Banner de Preview para GitHub README -->
+  const hostedSvgUrl = 'https://ais-pre-yp2ksa6mdvdeieuctagcdp-651500077203.us-east1.run.app/preview-cajero.svg';
+  const liveDemoUrl = 'https://ais-pre-yp2ksa6mdvdeieuctagcdp-651500077203.us-east1.run.app';
+
+  // 100% reliable - works without requiring git commit of svg
+  const embedSnippet = `<!-- Banner de Preview (Alojado en vivo - Sin error 404) -->
 <p align="center">
-  <a href="https://ais-pre-yp2ksa6mdvdeieuctagcdp-651500077203.us-east1.run.app">
-    <img src="./preview-cajero.svg" alt="Preview Cajero Automático C#" width="100%" />
+  <a href="${liveDemoUrl}">
+    <img src="${hostedSvgUrl}" alt="Preview Cajero Automático C#" width="100%" />
   </a>
 </p>`;
 
-  const liveDemoUrl = 'https://ais-pre-yp2ksa6mdvdeieuctagcdp-651500077203.us-east1.run.app';
+  const localEmbedSnippet = `<!-- Opción local: Requiere subir el archivo preview-cajero.svg al repo -->
+<p align="center">
+  <a href="${liveDemoUrl}">
+    <img src="./preview-cajero.svg" alt="Preview Cajero Automático C#" width="100%" />
+  </a>
+</p>`;
 
   const handleCopySnippet = () => {
     navigator.clipboard.writeText(embedSnippet);
     setCopiedSnippet(true);
     setTimeout(() => setCopiedSnippet(false), 2500);
+  };
+
+  const handleCopyLocalSnippet = () => {
+    navigator.clipboard.writeText(localEmbedSnippet);
+    setCopiedLocalSnippet(true);
+    setTimeout(() => setCopiedLocalSnippet(false), 2500);
   };
 
   const handleCopyUrl = () => {
@@ -98,14 +114,45 @@ export const PreviewAssets: React.FC = () => {
         </div>
       </div>
 
+      {/* 404 Troubleshooting & Solution Callout */}
+      <div className="bg-amber-950/40 border border-amber-500/40 rounded-2xl p-5 text-amber-200">
+        <div className="flex items-start gap-3">
+          <div className="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center shrink-0 text-sm">
+            💡
+          </div>
+          <div className="space-y-1.5 text-xs">
+            <h4 className="font-bold text-amber-300 text-sm">
+              ¿Por qué <code className="text-white bg-slate-900 px-1 py-0.5 rounded">raw.githubusercontent.com/.../preview-cajero.svg</code> dio 404 Not Found?
+            </h4>
+            <p className="text-slate-300 leading-relaxed">
+              GitHub devuelve <strong>404 Not Found</strong> porque el archivo <code className="text-amber-300">preview-cajero.svg</code> <strong>aún no ha sido subido/commiteado</strong> a la rama <code className="text-amber-300">main</code> de tu repositorio <code className="text-white">Eduardo-Fu/Cajero</code>.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+              <div className="p-3 bg-slate-950/70 border border-emerald-500/30 rounded-xl">
+                <span className="font-bold text-emerald-400 text-xs">Solución 1: URL Alojada en Vivo (Recomendada)</span>
+                <p className="text-[11px] text-slate-300 mt-1">
+                  Usa la URL ya alojada en este servidor en la nube. <strong>Funciona al 100% de inmediato</strong> sin necesidad de subir archivos extras ni hacer commits de imágenes.
+                </p>
+              </div>
+              <div className="p-3 bg-slate-950/70 border border-blue-500/30 rounded-xl">
+                <span className="font-bold text-blue-400 text-xs">Solución 2: Subir el archivo SVG a GitHub</span>
+                <p className="text-[11px] text-slate-300 mt-1">
+                  Descarga el archivo con el botón arriba y súbelo directamente a tu repositorio en <code className="text-white">github.com/Eduardo-Fu/Cajero</code> con <em>Add file &gt; Upload files</em>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Embed Guide & Live Link Sharing */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Box 1: Code Embed Snippet */}
         <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-bold text-white flex items-center gap-1.5">
-              <Code2 className="w-4 h-4 text-blue-400" />
-              <span>Código Markdown para insertar en tu README</span>
+              <Code2 className="w-4 h-4 text-emerald-400" />
+              <span>Opción 1: Embed en Vivo (Sin 404)</span>
             </span>
             <button
               type="button"
@@ -113,19 +160,43 @@ export const PreviewAssets: React.FC = () => {
               className="text-xs text-amber-400 hover:text-amber-300 font-mono flex items-center gap-1 cursor-pointer"
             >
               {copiedSnippet ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
-              <span>Copiar</span>
+              <span>{copiedSnippet ? 'Copiado' : 'Copiar'}</span>
             </button>
           </div>
-          <pre className="p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs font-mono text-slate-300 overflow-x-auto">
+          <pre className="p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs font-mono text-emerald-300/90 overflow-x-auto">
             {embedSnippet}
           </pre>
           <p className="text-[11px] text-slate-400 mt-2">
-            Coloca el archivo <code className="text-amber-300">preview-cajero.svg</code> en la raíz de tu repositorio y sube el commit.
+            Usa el servidor público de esta aplicación para mostrar el gráfico en GitHub de inmediato.
           </p>
         </div>
 
-        {/* Box 2: Live Link Sharing */}
+        {/* Box 2: Local File Embed Snippet */}
         <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs font-bold text-white flex items-center gap-1.5">
+              <Code2 className="w-4 h-4 text-blue-400" />
+              <span>Opción 2: Archivo Local en el Repo</span>
+            </span>
+            <button
+              type="button"
+              onClick={handleCopyLocalSnippet}
+              className="text-xs text-amber-400 hover:text-amber-300 font-mono flex items-center gap-1 cursor-pointer"
+            >
+              {copiedLocalSnippet ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+              <span>{copiedLocalSnippet ? 'Copiado' : 'Copiar'}</span>
+            </button>
+          </div>
+          <pre className="p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs font-mono text-slate-300 overflow-x-auto">
+            {localEmbedSnippet}
+          </pre>
+          <p className="text-[11px] text-slate-400 mt-2">
+            Requiere subir previamente <code className="text-amber-300">preview-cajero.svg</code> a la raíz del repositorio en GitHub.
+          </p>
+        </div>
+
+        {/* Box 3: Live Link Sharing */}
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5 md:col-span-2">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-bold text-white flex items-center gap-1.5">
               <Share2 className="w-4 h-4 text-emerald-400" />

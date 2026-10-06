@@ -18,8 +18,12 @@
 
 <br/>
 
-<!-- PREVIEW BANNER -->
-<img src="./preview-cajero.svg" alt="Preview Cajero Automático C#" width="100%" />
+<!-- PREVIEW BANNER (Alojado en vivo para evitar error 404) -->
+<p align="center">
+  <a href="https://ais-pre-yp2ksa6mdvdeieuctagcdp-651500077203.us-east1.run.app">
+    <img src="https://ais-pre-yp2ksa6mdvdeieuctagcdp-651500077203.us-east1.run.app/preview-cajero.svg" alt="Preview Cajero Automático C#" width="100%" />
+  </a>
+</p>
 
 </div>
 
